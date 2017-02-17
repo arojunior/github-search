@@ -1,9 +1,42 @@
+/*
+* React
+*/
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { render } from 'react-dom'
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+/*
+* Redux
+*/
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+import thunk from 'redux-thunk'
+
+/*
+* Reducers
+*/
+const combineReducer = combineReducers({
+
+})
+
+/*
+* Store
+*/
+const store = createStore(combineReducer, {}, compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+))
+
+/*
+* App
+*/
+import App from './App'
+
+/*
+* Render App
+*/
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+)
