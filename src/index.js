@@ -10,12 +10,13 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
 
 /*
 * Reducers
 */
 const combineReducer = combineReducers({
-
+    form : formReducer
 })
 
 /*

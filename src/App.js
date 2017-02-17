@@ -1,11 +1,14 @@
+import 'bootstrap/dist/css/bootstrap.css'
 import React, { Component } from 'react'
-import SearchForm           from './containers/searchForm'
+import Search           from './containers/Search'
 
 class App extends Component {
   render() {
     return (
         <div className="container">
-            <SearchForm />
+            <div className="row">
+                <Search />
+            </div>
         </div>
     )
   }
