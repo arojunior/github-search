@@ -8,36 +8,30 @@ import { render } from 'react-dom'
 * Redux
 */
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
-import thunk from 'redux-thunk'
-import { reducer as formReducer } from 'redux-form'
+import boot from 'redux-boot'
+import servicesModule from './modules/api/services'
 
-/*
-* Reducers
-*/
-const combineReducer = combineReducers({
-    form : formReducer
-})
+import apiModule from './modules/api'
 
-/*
-* Store
-*/
-const store = createStore(combineReducer, {}, compose(
-    applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-))
+const modules = [servicesModule, apiModule]
+
+const app = boot({}, modules)
 
 /*
 * App
 */
-import App from './App'
+import App from './containers/App'
 
 /*
 * Render App
 */
-render(
+app.then(({action, store}) => {
+
+  render(
     <Provider store={store}>
-        <App />
+      <App />
     </Provider>,
     document.getElementById('root')
-)
+  )
+
+})

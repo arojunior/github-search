@@ -1,16 +1,40 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import React, { Component } from 'react'
+import { fetchUserAction }  from './../modules/api'
+import { connect }          from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-const Form = (props) => {
-      const { handleSubmit, pristine, submitting } = props
+class Form extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            username : null
+        }
+    }
+
+    handleFieldChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+
+        const { username } = this.state
+        const { dispatch } = this.props
+
+        dispatch(fetchUserAction(username))
+    }
+
+    render() {
       return (
-        <form onSubmit={handleSubmit} className="form-horizontal">
+        <form onSubmit={this.handleSubmit.bind(this)} className="form-horizontal">
           <div className="form-group">
             <label className="col-md-2 control-label">Username</label>
             <div className="col-md-8">
-                 <Field
+                 <input
                      name="username"
-                     component="input"
+                     onChange={this.handleFieldChange.bind(this)}
                      type="text"
                      placeholder="ex: arojunior"
                      className="form-control" />
@@ -20,15 +44,13 @@ const Form = (props) => {
               <div className="col-md-offset-2 col-md-10">
                 <button
                     type="submit"
-                    className="btn btn-primary"
-                    disabled={pristine || submitting}>Send
+                    className="btn btn-primary">Send
                 </button>
             </div>
           </div>
         </form>
       )
+  }
 }
 
-export default reduxForm({
-  form: 'searchForm'
-})(Form)
+export default connect((dispatch) => bindActionCreators(dispatch))(Form)
