@@ -1,7 +1,7 @@
 import api from './services'
 
-const FETCH_REPOS_SUCCESS   = 'api/user/FETCH_REPOS_SUCCESS'
-const FETCH_USER_SUCCESS    = 'api/user/FETCH_SUCCESS'
+const FETCH_REPOS_SUCCESS   = 'modules/github/FETCH_REPOS_SUCCESS'
+const FETCH_USER_SUCCESS    = 'modules/github/FETCH_USER_SUCCESS'
 
 /*
 * Reducer
