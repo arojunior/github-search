@@ -1,21 +1,33 @@
 /*
 * React
 */
-import React from 'react';
+import React      from 'react';
 import { render } from 'react-dom'
 
 /*
 * Redux
 */
 import { Provider } from 'react-redux'
-import boot from 'redux-boot'
-import servicesModule from './modules/api/services'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+import promiseMiddleware          from 'redux-promise'
+import { reducer as formReducer } from 'redux-form'
+import github                     from './modules/github'
 
-import apiModule from './modules/api'
+/*
+* Reducer
+*/
+const combineReducer = combineReducers({
+    form : formReducer,
+    github
+})
 
-const modules = [servicesModule, apiModule]
-
-const app = boot({}, modules)
+/*
+* Store
+*/
+const store = createStore(combineReducer, {}, compose(
+    applyMiddleware(promiseMiddleware),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+));
 
 /*
 * App
@@ -25,13 +37,9 @@ import App from './containers/App'
 /*
 * Render App
 */
-app.then(({action, store}) => {
-
-  render(
+render(
     <Provider store={store}>
       <App />
     </Provider>,
     document.getElementById('root')
-  )
-
-})
+)

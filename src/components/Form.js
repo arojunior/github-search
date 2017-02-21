@@ -1,40 +1,18 @@
-import React, { Component } from 'react'
-import { fetchUserAction }  from './../modules/api'
-import { connect }          from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
 
-class Form extends Component {
+const Form = (props) => {
 
-    constructor(props) {
-        super(props)
+    const { handleSubmit, pristine, submitting } = props
 
-        this.state = {
-            username : null
-        }
-    }
-
-    handleFieldChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
-    handleSubmit(e) {
-        e.preventDefault()
-
-        const { username } = this.state
-        const { dispatch } = this.props
-
-        dispatch(fetchUserAction(username))
-    }
-
-    render() {
-      return (
-        <form onSubmit={this.handleSubmit.bind(this)} className="form-horizontal">
+    return (
+        <form onSubmit={handleSubmit} className="form-horizontal">
           <div className="form-group">
             <label className="col-md-2 control-label">Username</label>
             <div className="col-md-8">
-                 <input
+                 <Field
                      name="username"
-                     onChange={this.handleFieldChange.bind(this)}
+                     component="input"
                      type="text"
                      placeholder="ex: arojunior"
                      className="form-control" />
@@ -44,13 +22,16 @@ class Form extends Component {
               <div className="col-md-offset-2 col-md-10">
                 <button
                     type="submit"
-                    className="btn btn-primary">Send
+                    className="btn btn-primary"
+                    disabled={pristine || submitting}>Send
                 </button>
             </div>
           </div>
         </form>
-      )
-  }
+    )
+
 }
 
-export default connect((dispatch) => bindActionCreators(dispatch))(Form)
+export default reduxForm({
+  form: 'searchForm'
+})(Form)
