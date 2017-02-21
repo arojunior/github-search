@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import React, { Component } from 'react'
-import Search           from './Search'
+import Search               from './Search'
 
 class App extends Component {
   render() {

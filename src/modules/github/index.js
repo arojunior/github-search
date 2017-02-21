@@ -1,9 +1,7 @@
 import api from './services'
 
-//const FETCH_USER            = 'api/user/FETCH'
 const FETCH_REPOS_SUCCESS   = 'api/user/FETCH_REPOS_SUCCESS'
 const FETCH_USER_SUCCESS    = 'api/user/FETCH_SUCCESS'
-//const FETCH_USER_FAILED     = 'api/user/FETCH_FAILED'
 
 const initialState = {
     user        : null,
@@ -48,7 +46,6 @@ export const fetchReposSuccess = (repos) => {
 }
 
 export const fetchUser = (username) => api.getUser(username)
-
 export const fetchRepos = (username) => api.getRepos(username)
 
 export default github

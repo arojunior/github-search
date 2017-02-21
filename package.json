@@ -8,19 +8,13 @@
   "dependencies": {
     "axios": "^0.15.3",
     "bootstrap": "^3.3.7",
-    "cartola": "0.0.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "react-search-input": "^0.10.4",
     "redux": "^3.6.0",
-    "redux-actions": "^0.9.1",
-    "redux-boot": "^1.1.2",
     "redux-form": "^6.5.0",
-    "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0",
-    "superagent": "^3.4.4",
-    "superagent-use": "^0.1.0"
+    "redux-promise": "^0.5.3"
   },
   "scripts": {
     "start": "react-scripts start",

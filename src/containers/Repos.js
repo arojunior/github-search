@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import SearchInput, {createFilter} from 'react-search-input'
-import ReposList from './../components/ReposList'
+import React, { Component }         from 'react';
+import SearchInput, {createFilter}  from 'react-search-input'
+import ReposList                    from './../components/ReposList'
 
 const KEYS_TO_FILTERS = ['description', 'name']
 
