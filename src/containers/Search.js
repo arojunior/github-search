@@ -1,26 +1,17 @@
-import React, { Component } from 'react'
-import { connect }          from 'react-redux'
-import Form                 from './../components/Form'
-import User                 from './../components/User'
-import Repos                from './Repos'
-import {
-    fetchUser,
-    fetchRepos,
-    fetchUserSuccess,
-    fetchReposSuccess
-}  from './../modules/github'
-
+import React, { Component }         from 'react'
+import { connect }                  from 'react-redux'
+import { fetchUser, fetchRepos }    from './../modules/github'
+import Form                         from './../components/Form'
+import User                         from './../components/User'
+import Repos                        from './Repos'
 
 class Search extends Component {
 
     handleSubmit(values, dispatch) {
 
-        fetchUser(values.username)
-        .then((res) => dispatch(fetchUserSuccess(res.data)))
+        dispatch(fetchUser(values.username))
 
-        fetchRepos(values.username)
-        .then((res) => dispatch(fetchReposSuccess(res.data)))
-
+        dispatch(fetchRepos(values.username))
     }
 
     render() {
@@ -47,7 +38,7 @@ class Search extends Component {
               : null }
           </div>
         )
-  }
+    }
 
 }
 

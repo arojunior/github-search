@@ -7,14 +7,14 @@ import { render } from 'react-dom'
 /*
 * Redux
 */
-import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+import { Provider }               from 'react-redux'
 import promiseMiddleware          from 'redux-promise'
 import { reducer as formReducer } from 'redux-form'
 import github                     from './modules/github'
 
 /*
-* Reducer
+* Reducers
 */
 const combineReducer = combineReducers({
     form : formReducer,

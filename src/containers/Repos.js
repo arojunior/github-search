@@ -37,10 +37,8 @@ class Repos extends Component{
     )
  }
 
- searchUpdated (term) {
-   this.setState({
-       searchTerm: term
-   })
+ searchUpdated(term) {
+   this.setState({ searchTerm : term })
  }
 
 }

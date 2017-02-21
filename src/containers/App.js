@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Search               from './Search'
 
 class App extends Component {
+
   render() {
     return (
         <div className="container">
@@ -12,6 +13,7 @@ class App extends Component {
         </div>
     )
   }
+  
 }
 
 export default App

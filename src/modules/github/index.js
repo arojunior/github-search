@@ -3,6 +3,9 @@ import api from './services'
 const FETCH_REPOS_SUCCESS   = 'api/user/FETCH_REPOS_SUCCESS'
 const FETCH_USER_SUCCESS    = 'api/user/FETCH_SUCCESS'
 
+/*
+* Reducer
+*/
 const initialState = {
     user        : null,
     repos       : []
@@ -27,6 +30,9 @@ const github = (state = initialState, action) => {
     }
 }
 
+/*
+* Actions
+*/
 export const fetchUserSuccess = (user) => {
     return {
           type: FETCH_USER_SUCCESS,
@@ -45,7 +51,14 @@ export const fetchReposSuccess = (repos) => {
       }
 }
 
-export const fetchUser = (username) => api.getUser(username)
-export const fetchRepos = (username) => api.getRepos(username)
+export const fetchUser = (username) => {
+    return api.getUser(username)
+           .then((res) => fetchUserSuccess(res.data))
+}
+
+export const fetchRepos = (username) => {
+    return api.getRepos(username)
+           .then((res) => fetchReposSuccess(res.data))
+}
 
 export default github
