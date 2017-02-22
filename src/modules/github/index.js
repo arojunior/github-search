@@ -1,4 +1,5 @@
 import api from './services'
+import { createAction } from 'redux-actions'
 
 const FETCH_REPOS_SUCCESS   = 'modules/github/FETCH_REPOS_SUCCESS'
 const FETCH_USER_SUCCESS    = 'modules/github/FETCH_USER_SUCCESS'
@@ -14,16 +15,14 @@ const initialState = {
 const github = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_USER_SUCCESS:
-            const { user } = action.payload
             return {
                 ...state,
-                user : user
+                user : action.payload
             }
         case FETCH_REPOS_SUCCESS:
-            const { repos } = action.payload
             return {
                 ...state,
-                repos : repos
+                repos : action.payload
             }
       default:
         return state
@@ -33,23 +32,8 @@ const github = (state = initialState, action) => {
 /*
 * Actions
 */
-export const fetchUserSuccess = (user) => {
-    return {
-          type: FETCH_USER_SUCCESS,
-          payload: {
-              user  : user
-          }
-      }
-}
-
-export const fetchReposSuccess = (repos) => {
-    return {
-          type: FETCH_REPOS_SUCCESS,
-          payload: {
-              repos : repos
-          }
-      }
-}
+const fetchUserSuccess = createAction(FETCH_USER_SUCCESS)
+const fetchReposSuccess = createAction(FETCH_REPOS_SUCCESS)
 
 export const fetchUser = (username) => {
     return api.getUser(username)
