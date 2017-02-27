@@ -23,16 +23,16 @@ class Repos extends Component{
 
     return (
       <div>
-        <h2>{filtered.length} repositories</h2>
-        <SearchInput
-            className="search-input"
-            inputClassName="form-control"
-            type="text"
-            placeholder="Search repo"
-            onChange={this.searchUpdated.bind(this)}
-        />
-        <br />
-        {reposList}
+          <h2>{filtered.length} repositories</h2>
+          <SearchInput
+              className="search-input"
+              inputClassName="form-control"
+              type="text"
+              placeholder="Search repo"
+              onChange={this.searchUpdated.bind(this)}
+          />
+          <br />
+          {reposList}
       </div>
     )
  }

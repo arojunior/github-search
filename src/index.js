@@ -1,34 +1,13 @@
 /*
 * React
 */
-import React      from 'react';
-import { render } from 'react-dom'
-
-/*
-* Redux
-*/
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
-import { Provider }               from 'react-redux'
-import promiseMiddleware          from 'redux-promise'
-import { reducer as formReducer } from 'redux-form'
-import github                     from './modules/github'
-
-/*
-* Reducers
-*/
-const combineReducer = combineReducers({
-    form : formReducer,
-    github
-})
-
+import React        from 'react';
+import { render }   from 'react-dom'
+import { Provider } from 'react-redux'
 /*
 * Store
 */
-const store = createStore(combineReducer, {}, compose(
-    applyMiddleware(promiseMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-));
-
+import { store } from './modules'
 /*
 * App
 */

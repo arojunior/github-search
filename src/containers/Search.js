@@ -27,13 +27,13 @@ class Search extends Component {
                     </div>
                 </div>
                 { user ?
-                <div className="row">
-                  <div className="col-lg-3">
-                    <User user={user} />
-                  </div>
-                  <div className="col-lg-9">
-                    <Repos repos={repos} />
-                  </div>
+                    <div className="row">
+                        <div className="col-lg-3">
+                            <User user={user} />
+                        </div>
+                        <div className="col-lg-9">
+                            <Repos repos={repos} />
+                        </div>
               </div>
               : null }
           </div>
