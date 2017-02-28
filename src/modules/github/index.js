@@ -32,17 +32,20 @@ const github = (state = initialState, action) => {
 /*
 * Actions
 */
-const fetchUserSuccess  = createAction(FETCH_USER_SUCCESS)
-const fetchReposSuccess = createAction(FETCH_REPOS_SUCCESS)
-
-export const fetchUser = username => {
+const fetchUserAction = username => {
     return api.getUser(username)
-           .then(res => fetchUserSuccess(res.data))
+           .then(res => res.data)
 }
 
-export const fetchRepos = username => {
+const fetchReposAction = username => {
     return api.getRepos(username)
-           .then(res => fetchReposSuccess(res.data))
+           .then(res => res.data)
 }
+
+/*
+* Actions Creators
+*/
+export const fetchUser  = createAction(FETCH_USER_SUCCESS, fetchUserAction)
+export const fetchRepos = createAction(FETCH_REPOS_SUCCESS, fetchReposAction)
 
 export default github
