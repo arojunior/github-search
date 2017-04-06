@@ -1,51 +1,21 @@
-import api              from './services'
-import { createAction } from 'redux-actions'
+import {handleActions} from 'redux-actions'
 
-const FETCH_REPOS_SUCCESS   = 'modules/github/FETCH_REPOS_SUCCESS'
-const FETCH_USER_SUCCESS    = 'modules/github/FETCH_USER_SUCCESS'
+import {FETCH_USER_SUCCESS, FETCH_REPOS_SUCCESS} from './actions'
 
-/*
-* Reducer
-*/
 const initialState = {
     user        : null,
     repos       : []
 }
 
-const github = (state = initialState, action) => {
-    switch (action.type) {
-        case FETCH_USER_SUCCESS:
-            return {
-                ...state,
-                user: action.payload
-            }
-        case FETCH_REPOS_SUCCESS:
-            return {
-                ...state,
-                repos: action.payload
-            }
-        default:
-            return state
-    }
-}
+const reducer = handleActions({
+    [FETCH_USER_SUCCESS] : (state, action) => ({
+        ...state,
+        user: action.payload
+    }),
+    [FETCH_REPOS_SUCCESS] : (state, action) => ({
+        ...state,
+        repos: action.payload
+    })
+}, initialState)
 
-/*
-* Actions
-*/
-const fetchUserAction = username => {
-    return api.getUser(username)
-           .then(res => res.data)
-}
-
-const fetchReposAction = username => {
-    return api.getRepos(username)
-           .then(res => res.data)
-}
-
-/*
-* Actions Creators
-*/
-export const fetchUser  = createAction(FETCH_USER_SUCCESS, fetchUserAction)
-export const fetchRepos = createAction(FETCH_REPOS_SUCCESS, fetchReposAction)
-
-export default github
+export default reducer

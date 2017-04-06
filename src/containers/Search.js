@@ -1,9 +1,9 @@
-import React, { Component }         from 'react'
-import { connect }                  from 'react-redux'
-import { fetchUser, fetchRepos }    from './../modules/github'
-import Form                         from './../components/Form'
-import User                         from './../components/User'
-import Repos                        from './Repos'
+import React, {Component}         from 'react'
+import {connect}                  from 'react-redux'
+import {fetchUser, fetchRepos}    from './../modules/github/actions'
+import Form                       from './../components/Form'
+import User                       from './../components/User'
+import Repos                      from './Repos'
 
 class Search extends Component {
 
@@ -16,7 +16,7 @@ class Search extends Component {
 
     render() {
 
-        const { user, repos } = this.props
+        const {user, repos} = this.props
 
         return (
             <div>
@@ -34,15 +34,15 @@ class Search extends Component {
                         <div className="col-lg-9">
                             <Repos repos={repos} />
                         </div>
-              </div>
-              : null }
-          </div>
+                    </div>
+                : null }
+            </div>
         )
     }
 
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
     return {
         user  : state.github.user,
         repos : state.github.repos
